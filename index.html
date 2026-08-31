@@ -226,7 +226,7 @@
   }
   .hero-skyline{position:absolute; inset:0; z-index:1;}
   .hero-inner{position:relative; z-index:2; width:100%; padding-bottom:96px;}
-  .hero-top{display:flex; justify-content:space-between; align-items:flex-start; gap:40px; margin-bottom:56px;}
+  .hero-top{display:flex; justify-content:space-between; align-items:center; gap:40px; margin-bottom:56px; flex-wrap:wrap;}
   .hero h1{
     font-size:clamp(38px, 5.4vw, 78px); font-weight:450; line-height:1.03; max-width:16ch;
     letter-spacing:-0.02em;
@@ -244,6 +244,9 @@
   .hero-ticker div{font-family:'IBM Plex Mono',monospace; font-size:11px; color:rgba(252,251,247,0.5); letter-spacing:0.08em; text-transform:uppercase;}
   .hero-ticker strong{display:block; color:var(--white); font-family:'Fraunces',serif; font-size:15px; margin-bottom:4px; font-weight:450; text-transform:none; letter-spacing:0;}
 
+  @media (max-width:1024px){
+    .hero-top > div:last-child{flex:0 0 100%;}
+  }
   @media (max-width:760px){
     .hero-top{flex-direction:column; gap:20px;}
     .hero-ticker{gap:28px;}
@@ -263,16 +266,22 @@
   /* ---------- Services ---------- */
   .services-list{border-top:1px solid var(--line);}
   .service-row{
-    display:grid; grid-template-columns:80px 1fr 1.1fr 140px; gap:32px; align-items:start;
+    display:grid; grid-template-columns:280px 80px 1fr 1.1fr 140px; gap:32px; align-items:start;
     padding:38px 0; border-bottom:1px solid var(--line);
     transition:background .4s var(--ease);
   }
   .service-row:hover{background:rgba(173,138,82,0.06);}
+  .service-img{grid-column:1; grid-row:1/6;}
   .service-num{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--brass); padding-top:6px;}
   .service-row h3{font-size:23px; font-weight:450;}
   .service-row .desc{color:var(--stone); font-size:14.5px; line-height:1.7; max-width:52ch;}
   .service-row .cta{align-self:center; text-align:right;}
   .service-row .cta a{font-family:'IBM Plex Mono',monospace; font-size:12px; text-decoration:none; letter-spacing:0.04em; border-bottom:1px solid var(--brass); padding-bottom:3px;}
+  @media (max-width:1000px){
+    .service-row{grid-template-columns:1fr; gap:16px;}
+    .service-img{grid-column:1; grid-row:auto;}
+    .service-row .cta{text-align:left;}
+  }
   @media (max-width:900px){
     .service-row{grid-template-columns:44px 1fr; grid-template-areas:"num title" "num desc" "num cta";}
     .service-row .cta{text-align:left; margin-top:6px;}
@@ -626,12 +635,14 @@
   }
 
   .audience-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
-  .audience-card{background:var(--white); padding:44px 36px;}
+  .audience-card{background:var(--white); overflow:hidden; display:flex; flex-direction:column;}
+  .audience-card-img{width:100%; flex:0 0 auto;}
   .audience-card-invest{background:var(--forest-deep); color:var(--white);}
   .audience-card-invest p{color:rgba(252,251,247,0.68);}
   .audience-card h3{font-size:clamp(24px,2.4vw,32px); margin:14px 0 16px;}
   .audience-card p{color:var(--stone); font-size:14.5px; line-height:1.75; margin:0 0 26px; max-width:44ch;}
-  @media (max-width:760px){ .audience-grid{grid-template-columns:1fr;} .audience-card{padding:34px 24px;} }
+  .audience-card-invest .audience-card-img{opacity:0.85;}
+  @media (max-width:760px){ .audience-grid{grid-template-columns:1fr;} .audience-card{padding:0;} }
 
   /* ---------- Before / After ---------- */
   .ba-frame{display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line); border:1px solid var(--line);}
@@ -732,8 +743,11 @@
       <div>
         <div class="eyebrow" style="color:var(--brass-light);">MOBILE HOME PARK ACQUISITIONS</div>
         <h1 style="margin-top:20px;">We acquire mobile home parks.<br><em>Then we re-engineer them.</em></h1>
+        <p class="hero-sub">Green Luxe Capital Advisory identifies overlooked mobile home parks and manufactured housing communities. We acquire appropriate properties, improve the physical environment, strengthen operations, and create measurable value — then offer qualified investors the opportunity to participate in that transformation.</p>
       </div>
-      <p class="hero-sub">Green Luxe Capital Advisory identifies overlooked mobile home parks and manufactured housing communities. We acquire appropriate properties, improve the physical environment, strengthen operations, and create measurable value — then offer qualified investors the opportunity to participate in that transformation.</p>
+      <div style="flex:0 0 45%; min-width:300px;">
+        <img src="image/pexels-bertellifotografia-37774945.jpg" alt="Mobile Home Park Acquisition" style="width:100%; height:auto; border-radius:var(--radius); object-fit:cover; box-shadow:0 8px 32px rgba(0,0,0,0.15);">
+      </div>
     </div>
     <div class="hero-cta-row">
       <button class="btn btn-solid" data-view-link="sell">Sell Your Park</button>
@@ -773,16 +787,26 @@
 
     <div class="audience-grid reveal">
       <div class="audience-card">
-        <div class="eyebrow">FOR MHP OWNERS</div>
-        <h3>Sell Your Park</h3>
-        <p>Own a mobile home community that's become difficult to manage? Have questions about selling? We evaluate parks like yours for acquisition — no pressure, no obligation. Confidential. Straightforward.</p>
-        <button class="btn btn-solid" data-view-link="sell">Tell Us About Your Park</button>
+        <div class="audience-card-img">
+          <img src="image/2e02bc3d1162ff84ffcb8ee1f9a9e166.jpg" alt="Mobile Home Park" style="width:100%; height:240px; object-fit:cover; border-radius:var(--radius) var(--radius) 0 0;">
+        </div>
+        <div style="padding:24px;">
+          <div class="eyebrow">FOR MHP OWNERS</div>
+          <h3>Sell Your Park</h3>
+          <p>Own a mobile home community that's become difficult to manage? Have questions about selling? We evaluate parks like yours for acquisition — no pressure, no obligation. Confidential. Straightforward.</p>
+          <button class="btn btn-solid" data-view-link="sell">Tell Us About Your Park</button>
+        </div>
       </div>
       <div class="audience-card audience-card-invest">
-        <div class="eyebrow" style="color:var(--brass-light);">FOR INVESTORS &amp; CAPITAL PARTNERS</div>
-        <h3>Invest With Us</h3>
-        <p>Participate in a disciplined value-creation model built around acquiring overlooked mobile home parks and improving them through community investment, operational excellence, and strategic technology.</p>
-        <button class="btn btn-ghost-dark" data-view-link="invest">Explore the Model</button>
+        <div class="audience-card-img">
+          <img src="image/357b1b4095a2468524f146a900d19ab9.jpg" alt="Investment Opportunity" style="width:100%; height:240px; object-fit:cover; border-radius:var(--radius) var(--radius) 0 0;">
+        </div>
+        <div style="padding:24px;">
+          <div class="eyebrow" style="color:var(--brass-light);">FOR INVESTORS &amp; CAPITAL PARTNERS</div>
+          <h3>Invest With Us</h3>
+          <p>Participate in a disciplined value-creation model built around acquiring overlooked mobile home parks and improving them through community investment, operational excellence, and strategic technology.</p>
+          <button class="btn btn-ghost-dark" data-view-link="invest">Explore the Model</button>
+        </div>
       </div>
     </div>
   </div>
@@ -797,30 +821,45 @@
     </div>
     <div class="services-list reveal">
       <div class="service-row">
+        <div class="service-img">
+          <img src="image/pexels-shtefutsa-18026360.jpg" alt="Community Identification" style="width:100%; height:280px; object-fit:cover; border-radius:var(--radius);">
+        </div>
         <div class="service-num">01</div>
         <h3>Community Identification</h3>
         <div class="desc">We identify manufactured housing communities that may be underperforming, mismanaged, or owned by operators ready to move on. Properties in any condition are reviewed.</div>
         <div class="cta"><a href="#" data-view-link="sell">Sell Your Park →</a></div>
       </div>
       <div class="service-row">
+        <div class="service-img">
+          <img src="image/pexels-vincent-nguyen-575572075-30503369.jpg" alt="Disciplined Underwriting" style="width:100%; height:280px; object-fit:cover; border-radius:var(--radius);">
+        </div>
         <div class="service-num">02</div>
         <h3>Disciplined Underwriting</h3>
         <div class="desc">Every mobile home park is independently underwritten. We evaluate lot rent, occupancy, physical condition, operations, capital needs, and value-creation potential before commitment.</div>
         <div class="cta"><a href="#" data-open-convo>Inquire →</a></div>
       </div>
       <div class="service-row">
+        <div class="service-img">
+          <img src="image/pexels-vincent-nguyen-575572075-30503369%20(1).jpg" alt="Physical Re-Engineering" style="width:100%; height:280px; object-fit:cover; border-radius:var(--radius);">
+        </div>
         <div class="service-num">03</div>
         <h3>Physical Re-Engineering</h3>
         <div class="desc">We invest in the physical improvements to the community — common areas, infrastructure, landscaping, and resident amenities — creating a better living environment.</div>
         <div class="cta"></div>
       </div>
       <div class="service-row">
+        <div class="service-img">
+          <img src="image/pexels-vincent-nguyen-575572075-30503369%20(2).jpg" alt="Operational Excellence" style="width:100%; height:280px; object-fit:cover; border-radius:var(--radius);">
+        </div>
         <div class="service-num">04</div>
         <h3>Operational Excellence</h3>
         <div class="desc">Disciplined, professional property management and operations support. Administrative, maintenance, and resident-communication improvements often unlock significant value.</div>
         <div class="cta"></div>
       </div>
       <div class="service-row">
+        <div class="service-img">
+          <img src="image/pexels-vincent-nguyen-575572075-30503369%20(3).jpg" alt="AI-Enabled Operations" style="width:100%; height:280px; object-fit:cover; border-radius:var(--radius);">
+        </div>
         <div class="service-num">05</div>
         <h3>AI-Enabled Operations</h3>
         <div class="desc">Where appropriate, we apply AI and technology to support maintenance workflows, resident communication, lead management, and operational monitoring. Technology is a tool, not a replacement for good judgment.</div>
@@ -871,8 +910,9 @@
 </section>
 
 <!-- ================= OPPORTUNITIES (Interactive Intelligence) ================= -->
-<section id="opportunities">
-  <div class="wrap">
+<section id="opportunities" style="background:linear-gradient(135deg, rgba(0,0,0,0.02), rgba(173,138,82,0.04)); position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; opacity:0.08; background-image:url('image/pexels-bertellifotografia-37774945.jpg'); background-attachment:fixed; background-position:center; background-repeat:no-repeat; background-size:cover; z-index:0;"></div>
+  <div class="wrap" style="position:relative; z-index:1;">
     <div class="section-head reveal">
       <h2>Opportunities</h2>
       <p>Live opportunity intelligence. <span class="placeholder-badge">Sample data — pending verified listings</span></p>
@@ -894,8 +934,9 @@
 </div>
 
 <!-- ================= MARKET INTELLIGENCE DASHBOARD ================= -->
-<section id="intelligence" style="background:var(--parchment-warm);">
-  <div class="wrap">
+<section id="intelligence" style="background:var(--parchment-warm); position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; opacity:0.05; background-image:url('image/pexels-gottapics-29110872.jpg'); background-attachment:fixed; background-position:center; background-repeat:no-repeat; background-size:cover; z-index:0;"></div>
+  <div class="wrap" style="position:relative; z-index:1;">
     <div class="section-head reveal">
       <h2>Market Intelligence</h2>
       <p>Sector signals, research, and AI-assisted summaries. <span class="placeholder-badge">Illustrative sample data — replace with verified sources</span></p>
@@ -920,7 +961,7 @@
 <section id="about">
   <div class="wrap about">
     <div class="about-photo reveal">
-      <span>[ Professional photography to be supplied by client ]</span>
+      <img src="image/pexels-gottapics-29110872.jpg" alt="Mobile Home Park Community" style="width:100%; height:auto; border-radius:var(--radius); box-shadow:0 8px 32px rgba(0,0,0,0.12);">
     </div>
     <div class="about-copy reveal">
       <div class="eyebrow">FOUNDER &amp; PRINCIPAL</div>
@@ -953,8 +994,9 @@
 
 <!-- ================= SELL YOUR PARK VIEW ================= -->
 <div id="view-sell" class="app-view" hidden>
-  <div class="view-header">
-    <div class="wrap">
+  <div class="view-header" style="position:relative; overflow:hidden;">
+    <div style="position:absolute; inset:0; opacity:0.08; background-image:url('image/pexels-gottapics-29110872.jpg'); background-attachment:fixed; background-position:center; background-repeat:no-repeat; background-size:cover; z-index:0;"></div>
+    <div class="wrap" style="position:relative; z-index:1;">
       <div class="eyebrow">FOR MHP OWNERS</div>
       <h1>Have a Mobile Home Park You're Considering Selling?</h1>
       <p>We're interested in identifying mobile home parks and manufactured housing communities where thoughtful acquisition, improvement, and operational discipline can create additional value. Whether you're actively marketing, exploring options, or just curious about what your park might be worth — we'd like to hear about it. Confidential. No obligation.</p>
@@ -965,8 +1007,9 @@
     </div>
   </div>
 
-  <section>
-    <div class="wrap">
+  <section style="position:relative; overflow:hidden;">
+    <div style="position:absolute; inset:0; opacity:0.04; background-image:url('image/2e02bc3d1162ff84ffcb8ee1f9a9e166.jpg'); background-attachment:fixed; background-position:center; background-repeat:no-repeat; background-size:cover; z-index:0;"></div>
+    <div class="wrap" style="position:relative; z-index:1;">
       <div class="section-head reveal">
         <h2>We acquire mobile home parks</h2>
         <p>Any size. Any condition. Any region. If you own a manufactured housing community, we'd like to know about it.</p>
@@ -1007,8 +1050,9 @@
 
 <!-- ================= INVEST WITH US VIEW ================= -->
 <div id="view-invest" class="app-view" hidden>
-  <div class="view-header">
-    <div class="wrap">
+  <div class="view-header" style="position:relative; overflow:hidden;">
+    <div style="position:absolute; inset:0; opacity:0.08; background-image:url('image/pexels-bertellifotografia-37774945.jpg'); background-attachment:fixed; background-position:center; background-repeat:no-repeat; background-size:cover; z-index:0;"></div>
+    <div class="wrap" style="position:relative; z-index:1;">
       <div class="eyebrow">FOR INVESTORS &amp; CAPITAL PARTNERS</div>
       <h1>Invest in Mobile Home Park Transformation</h1>
       <p>Green Luxe Capital Advisory's model is built around acquiring overlooked mobile home parks and manufactured housing communities, improving them operationally and physically, and creating additional value through disciplined execution and technology — not speculation.</p>
@@ -1019,8 +1063,9 @@
     </div>
   </div>
 
-  <section>
-    <div class="wrap">
+  <section style="position:relative; overflow:hidden;">
+    <div style="position:absolute; inset:0; opacity:0.04; background-image:url('image/357b1b4095a2468524f146a900d19ab9.jpg'); background-attachment:fixed; background-position:center; background-repeat:no-repeat; background-size:cover; z-index:0;"></div>
+    <div class="wrap" style="position:relative; z-index:1;">
       <div class="section-head reveal">
         <h2>The investment thesis</h2>
         <p>Seven principles, applied consistently across every acquisition.</p>
@@ -1086,8 +1131,9 @@
   </section>
 
   <!-- ============ 1825 POST RD CASE STUDY ============ -->
-  <section id="case-study" style="background:var(--parchment-warm);">
-    <div class="wrap">
+  <section id="case-study" style="background:var(--parchment-warm); position:relative; overflow:hidden;">
+    <div style="position:absolute; inset:0; opacity:0.04; background-image:url('image/05c01617c656646617c211c6b9714566.jpg'); background-attachment:fixed; background-position:center; background-repeat:no-repeat; background-size:cover; z-index:0;"></div>
+    <div class="wrap" style="position:relative; z-index:1;">
       <div class="section-head reveal">
         <h2>1825 Post Rd</h2>
         <p>Legacy Asset → Re-Engineered Community. <span class="placeholder-badge">Client-supplied model figures</span></p>
@@ -1146,8 +1192,9 @@
 
 <!-- ================= OUR MODEL VIEW ================= -->
 <div id="view-model" class="app-view" hidden>
-  <div class="view-header">
-    <div class="wrap">
+  <div class="view-header" style="position:relative; overflow:hidden;">
+    <div style="position:absolute; inset:0; opacity:0.08; background-image:url('image/0ee16c0649d7f48924981ee6ca11b9ff.jpg'); background-attachment:fixed; background-position:center; background-repeat:no-repeat; background-size:cover; z-index:0;"></div>
+    <div class="wrap" style="position:relative; z-index:1;">
       <div class="eyebrow">OPERATING MODEL</div>
       <h1>How Green Luxe Creates Value</h1>
       <p>Six disciplines, applied in order, on every property we acquire.</p>
