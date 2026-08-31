@@ -748,6 +748,150 @@
     .ba-label{font-size:10px; padding:10px 12px;}
   }
 
+  /* ---------- Community Gallery ---------- */
+  .gallery-masonry{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:48px;
+    grid-auto-rows:minmax(240px, auto);
+  }
+  .gallery-item{
+    position:relative; overflow:hidden; border-radius:var(--radius);
+    background:var(--line); cursor:pointer; transition:all 0.4s var(--ease);
+  }
+  .gallery-item-large{
+    min-height:360px;
+  }
+  .gallery-item img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform 0.4s var(--ease);
+  }
+  .gallery-item:hover img{
+    transform:scale(1.04);
+  }
+  .gallery-overlay{
+    position:absolute; inset:0; background:rgba(15,26,20,0.3); opacity:0;
+    transition:opacity 0.4s var(--ease); display:flex; align-items:flex-end; justify-content:flex-start;
+    padding:0;
+  }
+  .gallery-item:hover .gallery-overlay{opacity:1;}
+  .gallery-caption{
+    color:var(--white); font-family:'IBM Plex Mono',monospace; font-size:11px;
+    text-transform:uppercase; letter-spacing:0.06em; padding:14px 16px;
+    background:linear-gradient(to top, rgba(12,25,19,0.8), transparent); width:100%;
+  }
+  @media (max-width:900px){
+    .gallery-masonry{grid-template-columns:repeat(3,1fr); gap:12px;}
+    .gallery-item-large{grid-column:span 2;}
+  }
+  @media (max-width:640px){
+    .gallery-masonry{grid-template-columns:repeat(2,1fr); gap:12px;}
+    .gallery-item-large{grid-column:span 1; min-height:200px;}
+  }
+  @media (max-width:480px){
+    .gallery-masonry{grid-template-columns:1fr; gap:8px;}
+    .gallery-item-large{min-height:180px;}
+    .gallery-caption{font-size:10px; padding:10px 12px;}
+  }
+
+  /* ---------- Why Mobile Home Parks ---------- */
+  .why-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:44px;
+  }
+  .why-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; transition:all 0.3s var(--ease); box-shadow:0 2px 8px rgba(0,0,0,0.04);
+  }
+  .why-card:hover{
+    border-color:var(--brass-light); box-shadow:0 8px 24px rgba(173,138,82,0.12);
+    transform:translateY(-4px);
+  }
+  .why-card-img{
+    width:100%; height:200px; overflow:hidden; background:var(--line);
+  }
+  .why-card-img img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform 0.4s var(--ease);
+  }
+  .why-card:hover .why-card-img img{
+    transform:scale(1.05);
+  }
+  .why-card-content{
+    padding:24px;
+  }
+  .why-card h3{
+    font-size:18px; margin:0 0 12px; color:var(--ink);
+  }
+  .why-card p{
+    font-size:14px; color:var(--stone); line-height:1.7; margin:0;
+  }
+  @media (max-width:900px){
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:640px){
+    .why-grid{grid-template-columns:1fr; gap:18px;}
+    .why-card-img{height:180px;}
+    .why-card-content{padding:18px;}
+    .why-card h3{font-size:16px;}
+    .why-card p{font-size:13px;}
+  }
+  @media (max-width:480px){
+    .why-card-img{height:160px;}
+    .why-card-content{padding:14px;}
+    .why-card h3{font-size:14px; margin-bottom:8px;}
+    .why-card p{font-size:12px;}
+  }
+
+  /* ---------- Investor Journey ---------- */
+  .investor-journey{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:20px; align-items:start; margin-top:44px;
+    grid-template-areas:
+      "img1 arrow1 img2 arrow2 img3 arrow3 img4"
+  }
+  .journey-stage{
+    display:flex; flex-direction:column; gap:16px;
+  }
+  .journey-img{
+    width:100%; aspect-ratio:4/3; overflow:hidden; border-radius:var(--radius);
+    background:var(--line); position:relative;
+  }
+  .journey-img img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform 0.4s var(--ease);
+  }
+  .journey-stage:hover .journey-img img{
+    transform:scale(1.06);
+  }
+  .journey-num{
+    font-family:'Fraunces',serif; font-size:28px; font-weight:450;
+    color:var(--brass); line-height:1;
+  }
+  .journey-stage h3{
+    font-size:18px; margin:0 0 8px; color:var(--ink);
+  }
+  .journey-stage p{
+    font-size:14px; color:var(--stone); line-height:1.6; margin:0;
+  }
+  .journey-arrow{
+    display:flex; align-items:flex-start; justify-content:center; padding-top:24px;
+    font-size:24px; color:var(--brass-light);
+  }
+  @media (max-width:900px){
+    .investor-journey{grid-template-columns:repeat(2,1fr); gap:16px;}
+    .journey-arrow{display:none;}
+  }
+  @media (max-width:640px){
+    .investor-journey{grid-template-columns:1fr; gap:12px;}
+    .journey-img{aspect-ratio:16/9;}
+    .journey-num{font-size:24px;}
+    .journey-stage h3{font-size:16px;}
+    .journey-stage p{font-size:13px;}
+  }
+  @media (max-width:480px){
+    .journey-img{aspect-ratio:16/10;}
+    .journey-num{font-size:20px;}
+    .journey-stage h3{font-size:14px; margin-bottom:4px;}
+    .journey-stage p{font-size:12px;}
+  }
+
   /* ---------- Model assumptions disclosure ---------- */
   .model-assumptions{border:1px dashed var(--brass); padding:18px 20px; margin-top:8px;}
   .model-assumptions summary{
@@ -961,6 +1105,25 @@
   </div>
 </section>
 
+<!-- ================= CINEMATIC: WE'RE LOOKING FOR MHP ================= -->
+<section id="looking-for-mhp" style="position:relative; overflow:hidden; min-height:480px; display:flex; align-items:center; justify-content:center; background:var(--forest-deep);">
+  <div style="position:absolute; inset:0; opacity:0.35; background-image:url('image/img%201.jpg'); background-attachment:fixed; background-position:center; background-repeat:no-repeat; background-size:cover; z-index:0;"></div>
+  <div style="position:absolute; inset:0; background:linear-gradient(135deg, rgba(12,25,19,0.7), rgba(24,50,38,0.7)); z-index:1;"></div>
+  <div class="wrap" style="position:relative; z-index:2; text-align:center;">
+    <div class="reveal">
+      <div class="eyebrow" style="justify-content:center; color:var(--brass-light); margin-bottom:20px;">ACTIVE ACQUISITIONS</div>
+      <h2 style="color:var(--white); margin-bottom:24px; font-size:clamp(32px,5vw,52px);">We're Looking For Mobile Home Parks</h2>
+      <p style="color:rgba(252,251,247,0.8); font-size:16px; max-width:62ch; margin:0 auto 40px; line-height:1.7;">
+        Any condition. Any size. Any region. If you own a mobile home park or manufactured housing community, we want to know about it. Confidential, no-pressure conversations.
+      </p>
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <button class="btn btn-solid" data-view-link="sell">Tell Us About Your Park</button>
+        <button class="btn btn-ghost-dark" data-open-convo>Start a Conversation</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= THE LEDGER (process / signature element) ================= -->
 <section class="ledger" id="process">
   <div class="wrap">
@@ -1138,6 +1301,22 @@
       </div>
     </div>
   </section>
+
+  <!-- ============ TRANSFORMATION POTENTIAL ============ -->
+  <section id="sell-transformation" style="position:relative; overflow:hidden; min-height:400px; display:flex; align-items:center; justify-content:center; background:var(--forest);">
+    <div style="position:absolute; inset:0; opacity:0.25; background-image:url('image/img3.jpg'); background-attachment:fixed; background-position:center; background-repeat:no-repeat; background-size:cover; z-index:0;"></div>
+    <div style="position:absolute; inset:0; background:linear-gradient(135deg, rgba(23,50,38,0.85), rgba(15,26,20,0.85)); z-index:1;"></div>
+    <div class="wrap" style="position:relative; z-index:2; text-align:center;">
+      <div class="reveal">
+        <div class="eyebrow" style="justify-content:center; color:var(--brass-light); margin-bottom:20px;">OWNER PERSPECTIVE</div>
+        <h2 style="color:var(--white); margin-bottom:24px; font-size:clamp(28px,4vw,44px);">We See Potential Where Others See Challenge</h2>
+        <p style="color:rgba(252,251,247,0.8); font-size:15px; max-width:58ch; margin:0 auto 28px; line-height:1.8;">
+          Whether your park is performing well, facing challenges, or somewhere in between, we evaluate every property for the potential to improve operations, enhance the community, and create measurable value for the next owner.
+        </p>
+        <button class="btn btn-solid" id="open-property-intake-2">Start Your Evaluation</button>
+      </div>
+    </div>
+  </section>
 </div>
 
 <!-- ================= INVEST WITH US VIEW ================= -->
@@ -1199,6 +1378,60 @@
     </div>
   </section>
 
+  <!-- ============ INVESTOR VISUAL JOURNEY ============ -->
+  <section style="position:relative; overflow:hidden; background:var(--parchment);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>The Investment Journey</h2>
+        <p>Four visual stages from overlooked to re-engineered, creating value at every step.</p>
+      </div>
+      
+      <div class="investor-journey reveal">
+        <div class="journey-stage">
+          <div class="journey-img">
+            <img src="image/pexels-gottapics-29110872.jpg" alt="Legacy mobile home park" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+          </div>
+          <div class="journey-num">01</div>
+          <h3>Overlooked Asset</h3>
+          <p>We identify communities the market has undervalued, underestimated, or overlooked entirely.</p>
+        </div>
+
+        <div class="journey-arrow" aria-hidden="true">→</div>
+
+        <div class="journey-stage">
+          <div class="journey-img">
+            <img src="image/img2.jpg" alt="Property re-engineering" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+          </div>
+          <div class="journey-num">02</div>
+          <h3>Re-Engineering</h3>
+          <p>Strategic improvements to the asset and community create the foundation for value.</p>
+        </div>
+
+        <div class="journey-arrow" aria-hidden="true">→</div>
+
+        <div class="journey-stage">
+          <div class="journey-img">
+            <img src="image/pexels-bertellifotografia-37774945.jpg" alt="Modern community operations" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+          </div>
+          <div class="journey-num">03</div>
+          <h3>Operational Excellence</h3>
+          <p>Disciplined operations and technology yield measurable improvements in property performance.</p>
+        </div>
+
+        <div class="journey-arrow" aria-hidden="true">→</div>
+
+        <div class="journey-stage">
+          <div class="journey-img">
+            <img src="image/img4.jpg" alt="Value creation outcome" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+          </div>
+          <div class="journey-num">04</div>
+          <h3>Value Created</h3>
+          <p>A transformed asset delivering institutional-quality returns to patient capital.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ BEFORE / AFTER ============ -->
   <section id="before-after">
     <div class="wrap">
@@ -1218,6 +1451,99 @@
           </div>
         </div>
         <p class="mono" style="font-size:11px; color:var(--stone); margin-top:14px;">These images illustrate transformation through disciplined re-engineering, operational excellence, and community improvement in mobile home park acquisitions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMMUNITY GALLERY ============ -->
+  <section id="community-gallery" style="background:var(--parchment);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>The Communities We Transform</h2>
+        <p>Premium mobile home parks and manufactured housing communities — from acquisition through complete re-engineering.</p>
+      </div>
+      
+      <div class="gallery-masonry reveal">
+        <div class="gallery-item gallery-item-large" style="grid-column:span 2; grid-row:span 2;">
+          <img src="image/img%201.jpg" alt="Premium mobile home community aerial view" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+          <div class="gallery-overlay"><div class="gallery-caption">Community Transformation</div></div>
+        </div>
+        <div class="gallery-item">
+          <img src="image/img2.jpg" alt="Modern manufactured housing community" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+          <div class="gallery-overlay"><div class="gallery-caption">Re-Engineered Asset</div></div>
+        </div>
+        <div class="gallery-item">
+          <img src="image/img3.jpg" alt="Community landscaping and improvements" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+          <div class="gallery-overlay"><div class="gallery-caption">Physical Improvement</div></div>
+        </div>
+        <div class="gallery-item">
+          <img src="image/img4.jpg" alt="Mobile home park streetscape" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+          <div class="gallery-overlay"><div class="gallery-caption">Community Value</div></div>
+        </div>
+        <div class="gallery-item">
+          <img src="image/img5.jpg" alt="Modern mobile home community" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+          <div class="gallery-overlay"><div class="gallery-caption">Operational Excellence</div></div>
+        </div>
+        <div class="gallery-item gallery-item-large" style="grid-column:span 2;">
+          <img src="image/img6.jpg" alt="Aerial mobile home park overview" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+          <div class="gallery-overlay"><div class="gallery-caption">Scale & Opportunity</div></div>
+        </div>
+        <div class="gallery-item">
+          <img src="image/img7.jpg" alt="Modern manufactured housing community details" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+          <div class="gallery-overlay"><div class="gallery-caption">Premium Communities</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY MOBILE HOME PARKS ============ -->
+  <section id="why-mhp" style="background:linear-gradient(135deg, rgba(0,0,0,0.02), rgba(173,138,82,0.04)); position:relative; overflow:hidden;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Why Mobile Home Parks?</h2>
+        <p>A proven asset class. Overlooked by many. Opportunity for those who know what they're looking for.</p>
+      </div>
+
+      <div class="why-grid reveal">
+        <div class="why-card">
+          <div class="why-card-img">
+            <img src="image/pexels-gottapics-29110872.jpg" alt="Legacy mobile home park" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius) var(--radius) 0 0;">
+          </div>
+          <div class="why-card-content">
+            <h3>Overlooked Opportunities</h3>
+            <p>Many parks are undermanaged, underpriced, or owned by operators ready to exit. The market's loss is disciplined capital's gain.</p>
+          </div>
+        </div>
+
+        <div class="why-card">
+          <div class="why-card-img">
+            <img src="image/pexels-bertellifotografia-37774945.jpg" alt="Modern manufactured housing community" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius) var(--radius) 0 0;">
+          </div>
+          <div class="why-card-content">
+            <h3>Community Improvement</h3>
+            <p>Thoughtful physical and operational improvements create measurable value — better for residents, better returns for investors.</p>
+          </div>
+        </div>
+
+        <div class="why-card">
+          <div class="why-card-img">
+            <img src="image/pexels-shtefutsa-18026360.jpg" alt="Property analysis and operations" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius) var(--radius) 0 0;">
+          </div>
+          <div class="why-card-content">
+            <h3>Operational Discipline</h3>
+            <p>Professional management and technology-enabled operations are often the largest value creators — not cosmetic renovations.</p>
+          </div>
+        </div>
+
+        <div class="why-card">
+          <div class="why-card-img">
+            <img src="image/pexels-vincent-nguyen-575572075-30503369.jpg" alt="Real estate value creation" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius) var(--radius) 0 0;">
+          </div>
+          <div class="why-card-content">
+            <h3>Sustainable Value</h3>
+            <p>Resident-focused, operationally sound communities outperform. This model creates lasting value, not speculative gains.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -2311,7 +2637,7 @@ window.__investSubmit = () => {
 };
 
 /* ---------- Wire up all entry points into the two modals + two AI widgets ---------- */
-document.querySelectorAll('#open-property-intake, [data-open-property-intake]').forEach(el => {
+document.querySelectorAll('#open-property-intake, #open-property-intake-2, [data-open-property-intake]').forEach(el => {
   el.addEventListener('click', (e) => { e.preventDefault(); propOpen(); });
 });
 document.querySelectorAll('#open-investor-qual, [data-open-investor-qual]').forEach(el => {
